@@ -71,8 +71,8 @@ void styleCaptionLabel(Label l) {
 
 void initUI() {
   // Button(String key, String label, float x, float y, color bg, color act, color fg)
-  testBtn = createButton("testBtn", "Test Button", width / 2, height / 2, constant.primaryCol, 
-  constant.accentCol, color(0, 255, 0));
+  //testBtn = createButton("testBtn", "Test Button", width / 2, height / 2, constant.primaryCol, 
+  //constant.accentCol, color(0, 255, 0));
 }
 
 void testBtn() {

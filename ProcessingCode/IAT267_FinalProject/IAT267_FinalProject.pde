@@ -14,6 +14,7 @@ Serial port;
 // GUI //
 ControlP5 gui;
 Button testBtn;
+PImage dashLogo;
 
 // ARDUINO RELATED //
 byte[] inBuffer = new byte[255]; //size of the serial buffer to allow for end of data characters and all chars 
@@ -24,12 +25,14 @@ int valP_temp; // Data received from the serial port - variable to store the tem
 
 
 
+
 // SETUP METHOD // 
 void setup() {
   // Initializations // 
   constant = new Constants();
   gui = new ControlP5(this);
   //port = new Serial(this, "COM11", 9600); // TODO: uncomment this to link Serial port to Processing
+  dashLogo = loadImage("logo-dashboard.jpg");
   initUI();
 
   // Window Properties // 
@@ -51,7 +54,27 @@ void draw() {
   // ONLY TEMPORARY! FOR SEEING HOW IT WILL LOOK //
   valP_oxygen = 96;
   valP_heartRate = 85;
-  valP_temp = 37
+  valP_temp = 37;
+
+  image(dashLogo, 0, 0);
+  bgRectangles();
+}
+
+void bgRectangles() {
+  pushStyle();
+  pushMatrix();
+  noStroke();
+  fill(constant.heartRateCol); 
+  translate(259, 101);
+  rect(0, 0, 807, 293);
+  translate(0, 293);
+  fill(constant.bodyTempCol);
+  rect(0, 0, 405, 410);
+  translate(405, 0);
+  fill(constant.oxygenCol);
+  rect(0, 0, 405, 410);
+  popMatrix();
+  popStyle();
 }
 
 
