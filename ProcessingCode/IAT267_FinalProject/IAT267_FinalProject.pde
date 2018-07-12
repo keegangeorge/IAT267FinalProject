@@ -43,13 +43,20 @@ void setup() {
 
 // DRAW METHOD // 
 void draw() {
+  // surface.setTitle("X: " + mouseX + "  Y: " + mouseY); TODO: uncomment to view mouse location real-time
+
   background(constant.customWhite);
   // sensorInformation() // TODO: uncomment this code to view sensor information in window
+  
+  // ONLY TEMPORARY! FOR SEEING HOW IT WILL LOOK //
+  valP_oxygen = 96;
+  valP_heartRate = 85;
+  valP_temp = 37
 }
 
 
 void sensorInformation() {
-    if (0 < port.available()) { // if data is available to read
+  if (0 < port.available()) { // if data is available to read
     println(" ");
     port.readBytesUntil('&', inBuffer);
 
@@ -95,16 +102,16 @@ void sensorInformation() {
 
 
       /////////////////// TEMPERATURE SENSOR READING ////////////////////////////
-      
-      
+
+
       /*
       * Insert code for reading the temperature sensor here.
-      *
-      */
-      
-      
-      
-      
+       *
+       */
+
+
+
+
       // Old code for drawing sensor information based on arduino
       // TODO update to link code with proper designs
       background(245); // Clear background
@@ -129,8 +136,4 @@ void sensorInformation() {
       }
     }
   }
-
-  
-  
-  
 }
