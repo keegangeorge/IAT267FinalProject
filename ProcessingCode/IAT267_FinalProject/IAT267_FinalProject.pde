@@ -29,7 +29,7 @@ void setup() {
   // Initializations // 
   constant = new Constants();
   gui = new ControlP5(this);
-  port = new Serial(this, "COM11", 9600);
+  //port = new Serial(this, "COM11", 9600); // TODO: uncomment this to link Serial port to Processing
   initUI();
 
   // Window Properties // 
@@ -44,8 +44,12 @@ void setup() {
 // DRAW METHOD // 
 void draw() {
   background(constant.customWhite);
+  // sensorInformation() // TODO: uncomment this code to view sensor information in window
+}
 
-  if (0 < port.available()) { // if data is available to read
+
+void sensorInformation() {
+    if (0 < port.available()) { // if data is available to read
     println(" ");
     port.readBytesUntil('&', inBuffer);
 
@@ -101,7 +105,8 @@ void draw() {
       
       
       
-      
+      // Old code for drawing sensor information based on arduino
+      // TODO update to link code with proper designs
       background(245); // Clear background
       fill(0);
       stroke(0);
@@ -124,4 +129,8 @@ void draw() {
       }
     }
   }
+
+  
+  
+  
 }
