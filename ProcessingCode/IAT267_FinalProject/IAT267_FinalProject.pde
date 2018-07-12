@@ -11,7 +11,7 @@ import processing.serial.*;
 Constants constant;
 Serial port;
 
-// GUI //
+// GUI //  
 ControlP5 gui;
 Button btnInfo;
 PImage dashLogo;
@@ -65,7 +65,7 @@ void setup() {
 // DRAW METHOD // 
 void draw() {
   background(255);
-  surface.setTitle("X: " + mouseX + "  Y: " + mouseY); // TODO: uncomment to view mouse location real-time
+  //surface.setTitle("X: " + mouseX + "  Y: " + mouseY); // TODO: uncomment to view mouse location real-time
 
   // sensorInformation() // TODO: uncomment this code to view sensor information in window
 
