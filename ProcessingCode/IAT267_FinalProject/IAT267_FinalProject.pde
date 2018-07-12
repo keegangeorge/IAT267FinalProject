@@ -13,8 +13,12 @@ Serial port;
 
 // GUI //
 ControlP5 gui;
-Button testBtn;
+Button btnInfo;
 PImage dashLogo;
+PImage heartLogo;
+PImage chartLogo;
+PImage spectrum;
+PImage radial;
 
 // ARDUINO RELATED //
 byte[] inBuffer = new byte[255]; //size of the serial buffer to allow for end of data characters and all chars 
@@ -22,6 +26,16 @@ int valP_oxygen; // Data received from the serial port - variable to store the o
 int valP_heartRate; // Data received from the serial port - variable to store the heart rate sensor reading
 int valP_temp; // Data received from the serial port - variable to store the temperature sensor reading
 
+// STRINGS //
+String heartRateTitle = "HEART RATE";
+String heartRateUnits = "bpm";
+
+
+String bodyTempTitle = "BODY TEMPERATURE";
+String bodyTempUnits = "°C";
+
+String oxygenTitle = "SpO2 LEVELS";
+String oxygenUnits = "%";
 
 
 
@@ -32,7 +46,11 @@ void setup() {
   constant = new Constants();
   gui = new ControlP5(this);
   //port = new Serial(this, "COM11", 9600); // TODO: uncomment this to link Serial port to Processing
-  dashLogo = loadImage("logo-dashboard.jpg");
+  dashLogo = loadImage("dashboardSidebar.jpg");
+  heartLogo = loadImage("heartLogo.png");
+  chartLogo = loadImage("logoChart.png");
+  spectrum = loadImage("spectrum.jpg");
+  radial = loadImage("radial.jpg");
   initUI();
 
   // Window Properties // 
@@ -46,23 +64,31 @@ void setup() {
 
 // DRAW METHOD // 
 void draw() {
-  // surface.setTitle("X: " + mouseX + "  Y: " + mouseY); TODO: uncomment to view mouse location real-time
+  background(255);
+  surface.setTitle("X: " + mouseX + "  Y: " + mouseY); // TODO: uncomment to view mouse location real-time
 
-  background(constant.customWhite);
   // sensorInformation() // TODO: uncomment this code to view sensor information in window
-  
+
   // ONLY TEMPORARY! FOR SEEING HOW IT WILL LOOK //
   valP_oxygen = 96;
   valP_heartRate = 85;
   valP_temp = 37;
-
-  image(dashLogo, 0, 0);
-  bgRectangles();
+  dashboardLayout();
 }
 
-void bgRectangles() {
+void dashboardLayout() {
+  // SIDE DASHBOARD LOGO //
+  image(dashLogo, 0, 0);
+
+
+
+
+
+
+
+  // RECTANGLES // 
   pushStyle();
-  pushMatrix();
+  pushMatrix(); 
   noStroke();
   fill(constant.heartRateCol); 
   translate(259, 101);
@@ -73,6 +99,76 @@ void bgRectangles() {
   translate(405, 0);
   fill(constant.oxygenCol);
   rect(0, 0, 405, 410);
+  popMatrix();
+  popStyle();
+
+  // HEART RATE CONTENT //
+
+  pushMatrix();
+  pushStyle();
+  fill(255);
+  textSize(36);
+  translate(630, 290);
+  text(heartRateUnits, 0, 0);
+  translate(-70, 80);
+  text(heartRateTitle, 0, 0);
+  translate(-252, -223);
+  image(chartLogo, 166, 48);
+  image(heartLogo, 0, 0);
+
+  pushStyle();
+  translate(294, 83);
+  textFont(constant.numFont);
+  textSize(120);
+  text(valP_heartRate, 0, 0);
+  popStyle();
+
+  popStyle();
+  popMatrix();
+
+  // BODY TEMP CONTENT // 
+  pushStyle();
+  pushMatrix();
+  translate(310, 468);
+  textSize(30);
+  fill(255);
+  text(bodyTempTitle, 0, 0);
+  translate(0, 209);
+  image(spectrum, 0, 0);
+  translate(237, -68);
+  textSize(25);
+  text(bodyTempUnits, 0, 0);
+
+  pushStyle();
+  translate(-148, 7);
+  textFont(constant.numFont);
+  textSize(120);
+  text(valP_temp, 0, 0);
+  popStyle();
+
+  popMatrix();
+  popStyle();
+
+  // SPO2 CONTENT //
+  pushStyle();
+  pushMatrix();
+  translate(771, 468);
+  textSize(30);
+  fill(255);
+  text(oxygenTitle, 21, 0);
+  translate(-103, 209);
+  image(radial, 0, 0);
+  translate(315, -68);
+  textSize(25);
+  text(oxygenUnits, -16, 0);
+
+  pushStyle();
+  translate(-177, 0);
+  textFont(constant.numFont);
+  textSize(120);
+  text(valP_oxygen, 0, 0);
+  popStyle();
+
   popMatrix();
   popStyle();
 }

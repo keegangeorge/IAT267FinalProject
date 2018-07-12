@@ -13,5 +13,6 @@ public class Constants {
   
 
   // FONTS // 
-  PFont labelFont = loadFont("Mont-Light-36.vlw");
+  PFont labelFont = loadFont("Arial-16.vlw");
+  PFont numFont = loadFont("Mont-Heavy-48.vlw");
 } // class end
