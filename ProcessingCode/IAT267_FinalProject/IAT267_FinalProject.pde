@@ -16,7 +16,7 @@ Button testBtn;
 void setup() {
   constant = new Constants();
   gui = new ControlP5(this);
-
+  surface.setTitle("moniTOHR | Health Kit");
   smooth();
   size(720, 1280);
   frameRate(60); // encourages frame rate to be 60FPS
